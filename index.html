@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Empty HTML5 Template</title>
+  <meta name="description" content="Empty HTML5 Template">
+  <meta name="DWEC" content="Desarrollo Web Entorno Cliente">
+  <!--<link rel="stylesheet" href="css/styles.css?v=1.0">-->
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+<style>
+table, th, td {
+  border: 1px solid black;
+  padding: 20px;
+}
+</style>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+  <div id="menu">
+    <button id="idButtonEditProduct">Edit product</button>
+    <button id="idButtonAdd">Add product</button>
+    <button id="idButtonSell">Sell product</button>
+  </div>
+  <div id="selectProduct"></div>
+  <div id="editProduct"></div>
+  <div id="addProduct"></div>
+  <div id="sellProduct">
+       <table id="lineas">
+          <tfoot>
+              <tr>
+           <td colspan="4">Total (no V.A.T.)</td><td id="totalNoVAT" class="total a_derecha">0</td>
+              </tr>
+              <tr>
+           <td colspan="4">Total (+21% V.A.T.)</td><td id="totalVAT" class="total a_derecha">0</td>
+              </tr>
+          </tfoot>
+          <tr>
+             <th class="ancho1">Code</th>
+             <th class="ancho2">Ref.</th>
+             <th class="ancho3">Price</th>
+             <th class="ancho3">Quantity</th>
+             <th class="ancho3">Total</th>
+          </tr>
+       </table>
+      <button id="idFinishInvoice">Finish</button>
+      <button id="idSaveTable">Save table</button>
+      <button id="idRestoreTable">Restore table</button>
+
+    <div id="factura" style="display:none"><!-- abre factura -->
+    <h1> Invoice (Factura) </h1>
+    <form id="miform" action="*" >
+          <label for="dni">DNI cliente: </label><input type="text" id="dni" value="" placeholder="123456789X"><br>
+          <label for="email">Email cliente: </label><input type="email" id="email" value="" placeholder="id@dominio.com"><br>
+          <label for="fecha">Fecha factura: </label><input type="fecha" id="fecha" value="" placeholder="dd/mm/aaaa"><br>
+          <label for="ref">Ref: </label><input type="text" id="ref" value="" placeholder="ref" disabled="true"><br>
+          <button id="idPayInvoice" class="mar_t_10">Pagar</button>  <!-- haran un modal-->
+          <button id="idDownloadJSON">Create and download JSON</button>
+       </form>
+    </div><!-- cierra factura -->
+
+<!--------- Abre el MODAL: Modo de pago: tarjeta o efectivo en un modal-->
+<div id="id01" class="modal">
+
+  <form class="modal-content animate" action="*" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Número de tarjeta</b></label>
+      <input type="text" placeholder="Enter Card name" name="uname" required>
+
+      <label for="psw"><b>Cantidad</b></label>
+      <input type="text" placeholder="Enter total" name="psw" required>
+
+      <button type="submit">Pay</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div><!----------------------------cierra el modal-->
+  </div><!-- este div cierra <div id="sellProduct"-->
+  <script src="script.js"></script>
+</body>
+</html>
